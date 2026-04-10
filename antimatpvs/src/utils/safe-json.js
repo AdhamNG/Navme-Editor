@@ -9,9 +9,16 @@ export async function readJsonResponse(res, options = {}) {
   const trimmed = (text ?? '').trim();
   if (!trimmed) {
     if (allowEmpty) return null;
-    throw new Error(
-      `Empty response from server (${res.status} ${res.statusText || 'Error'}). Check deploy /api/multiset proxy and MultiSet API availability.`,
-    );
+    const ct = (res.headers.get('content-type') || '').toLowerCase();
+    let hint = '';
+    if (ct.includes('text/html')) {
+      hint =
+        ' The response is HTML (usually your app’s index page) — this URL is not proxied to MultiSet. Serve with `npm run preview` or `npm run dev` from antimatpvs, or put a server proxy at /api/multiset → https://api.multiset.ai.';
+    } else if (res.ok) {
+      hint =
+        ' Empty 200 often means a broken or missing proxy. Use Vite preview (Render: startCommand `npm run preview --prefix antimatpvs`), or build with VITE_MULTISET_API_URL=https://api.multiset.ai and allowlist your origin in MultiSet.';
+    }
+    throw new Error(`Empty response body (HTTP ${res.status}).${hint}`);
   }
   try {
     return JSON.parse(trimmed);

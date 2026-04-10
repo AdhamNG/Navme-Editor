@@ -7,9 +7,10 @@
  * Fallback: tries to construct a conventional key from accountId + mapId.
  */
 import { readJsonResponse } from '../utils/safe-json.js';
+import { multisetApiUrl } from '../utils/multiset-api-base.js';
 
-const MAP_INFO_URL = '/api/multiset/v1/vps/map';
-const FILE_URL = '/api/multiset/v1/file';
+const MAP_INFO_URL = multisetApiUrl('/v1/vps/map');
+const FILE_URL = multisetApiUrl('/v1/file');
 
 /**
  * Download the map's 3D file (GLB).

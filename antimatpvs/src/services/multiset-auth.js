@@ -3,8 +3,9 @@
  * POST /v1/m2m/token with Basic auth header.
  */
 import { readJsonResponse } from '../utils/safe-json.js';
+import { multisetApiUrl } from '../utils/multiset-api-base.js';
 
-const TOKEN_URL = '/api/multiset/v1/m2m/token';
+const TOKEN_URL = multisetApiUrl('/v1/m2m/token');
 
 /**
  * Obtain a JWT bearer token from MultiSet.

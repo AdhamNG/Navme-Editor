@@ -3,8 +3,9 @@
  * POST /v1/vps/map/query-form  (multipart/form-data)
  */
 import { readJsonResponse } from '../utils/safe-json.js';
+import { multisetApiUrl } from '../utils/multiset-api-base.js';
 
-const VPS_QUERY_URL = '/api/multiset/v1/vps/map/query-form';
+const VPS_QUERY_URL = multisetApiUrl('/v1/vps/map/query-form');
 
 /**
  * Send a camera frame to MultiSet VPS for localization.

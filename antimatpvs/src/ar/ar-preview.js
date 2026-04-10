@@ -13,13 +13,14 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { readJsonResponse } from '../utils/safe-json.js';
+import { multisetApiUrl } from '../utils/multiset-api-base.js';
 
 /** Matches editor proxy + MultiSet REST (see https://docs.multiset.ai/basics/rest-api-docs/map-query ) */
-const VPS_QUERY_SINGLE = '/api/multiset/v1/vps/map/query-form';
-const VPS_QUERY_SINGLE_ALT = '/api/multiset/vps/map/query-form';
-const TOKEN_URL = '/api/multiset/v1/m2m/token';
-const MAP_INFO_URL = '/api/multiset/v1/vps/map';
-const FILE_URL = '/api/multiset/v1/file';
+const VPS_QUERY_SINGLE = multisetApiUrl('/v1/vps/map/query-form');
+const VPS_QUERY_SINGLE_ALT = multisetApiUrl('/vps/map/query-form');
+const TOKEN_URL = multisetApiUrl('/v1/m2m/token');
+const MAP_INFO_URL = multisetApiUrl('/v1/vps/map');
+const FILE_URL = multisetApiUrl('/v1/file');
 
 const _pos = new THREE.Vector3();
 const _quat = new THREE.Quaternion();
